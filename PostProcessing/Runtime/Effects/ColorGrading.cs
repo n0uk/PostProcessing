@@ -786,6 +786,10 @@ namespace UnityEngine.Rendering.PostProcessing
 
         static bool IsRenderTextureFormatSupportedForLinearFiltering(RenderTextureFormat format)
         {
+			if (format == RenderTextureFormat.ARGBHalf) 
+			{
+				return false;
+			}
 #if UNITY_2019_1_OR_NEWER
             var gFormat = GraphicsFormatUtility.GetGraphicsFormat(format, RenderTextureReadWrite.Linear);
             return SystemInfo.IsFormatSupported(gFormat, FormatUsage.Linear);
